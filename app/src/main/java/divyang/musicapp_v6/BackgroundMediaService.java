@@ -61,6 +61,14 @@ public class BackgroundMediaService extends MediaBrowserService implements
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
+        if( intent != null && intent.getExtras() != null )
+        {
+            Log.i("Check","Checking data from delete intent.");
+            Bundle intentData = intent.getExtras();
+            Log.i("Check",String.valueOf(intentData.getInt("deleteKey@991")));
+            if( intentData.getInt("deleteKey@991") == 991 )
+                stopSelf();
+        }
         handleIntent(mediaSession,intent);
         return super.onStartCommand(intent, flags, startId);
     }
@@ -100,6 +108,7 @@ public class BackgroundMediaService extends MediaBrowserService implements
     @Override
     public void onTaskRemoved(Intent rootIntent)
     {
+        Log.i("Check","App removed from memory");
         super.onTaskRemoved(rootIntent);
     }
 
@@ -181,7 +190,7 @@ public class BackgroundMediaService extends MediaBrowserService implements
                     Log.i("Check","onCompletion");
                     mediaPlayer.stop();
                     setMediaPlaybackState(PlaybackState.STATE_STOPPED);
-                    //stopForeground(true);
+                    stopForeground(false);
                     showPausedNotification();
                 }
             });
@@ -192,8 +201,7 @@ public class BackgroundMediaService extends MediaBrowserService implements
         {
             mediaPlayer.pause();
             setMediaPlaybackState(PlaybackState.STATE_PAUSED);
-            if(!MainActivity.activity)
-                stopForeground(true);
+            stopForeground(false);
             showPausedNotification();
             super.onPause();
         }
@@ -263,15 +271,15 @@ public class BackgroundMediaService extends MediaBrowserService implements
         if( builder == null )
             return;
 
-        Notification notify = builder.build();
+        /*Notification notify = builder.build();
         notify.priority = Notification.PRIORITY_MAX;
         notify.flags |= Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
         NotificationManager notifyManage = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notifyManage.notify(PLAY_NOTIFICATION,notify);
+        notifyManage.notify(PLAY_NOTIFICATION,notify);*/
 
         //It before hand start the notification with Ongoing as true; Also it does not
         // refreshes the notification when paused.
-        //startForeground(PLAY_NOTIFICATION, builder.build());
+        startForeground(PLAY_NOTIFICATION, builder.build());
     }
 
     private void showPausedNotification()

@@ -4,9 +4,6 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Icon;
 import android.media.MediaDescription;
 import android.media.MediaMetadata;
@@ -24,6 +21,12 @@ class MediaStyleHelper
         MediaController controller = mediaSession.getController();
         MediaMetadata mediaMetadata = controller.getMetadata();
         MediaDescription description = mediaMetadata.getDescription();
+
+        // Code for stopping service when notification is swiped.
+        Intent deleteIntent = new Intent(context, BackgroundMediaService.class);
+        deleteIntent.putExtra("deleteKey@991", 991);
+        PendingIntent deletePendingIntent = PendingIntent.getService(context, 991, deleteIntent,
+                                            PendingIntent.FLAG_CANCEL_CURRENT);
 
         // Code For Notification Click Event to Open Activity.
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
@@ -47,7 +50,7 @@ class MediaStyleHelper
                 // Enable launching the player by clicking the notification.
                 //.setContentIntent(controller.getSessionActivity())
                 // Stop the service when the notification is swiped away
-                .setDeleteIntent( MediaButtonReceiver.buildMediaButtonPendingIntent(context, PlaybackState.ACTION_STOP))
+                .setDeleteIntent( deletePendingIntent )//MediaButtonReceiver.buildMediaButtonPendingIntent(context, PlaybackState.ACTION_STOP))
                 // Make the transport controls visible on the lock screen.
                 .setVisibility(Notification.VISIBILITY_PUBLIC)
                 // Add the pending Intent to Notification
