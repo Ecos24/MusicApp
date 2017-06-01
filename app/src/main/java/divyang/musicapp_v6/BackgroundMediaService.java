@@ -181,7 +181,7 @@ public class BackgroundMediaService extends MediaBrowserService implements
                     Log.i("Check","onCompletion");
                     mediaPlayer.stop();
                     setMediaPlaybackState(PlaybackState.STATE_STOPPED);
-                    stopForeground(true);
+                    //stopForeground(true);
                     showPausedNotification();
                 }
             });
@@ -263,15 +263,15 @@ public class BackgroundMediaService extends MediaBrowserService implements
         if( builder == null )
             return;
 
-        /*Notification notify = builder.build();
+        Notification notify = builder.build();
         notify.priority = Notification.PRIORITY_MAX;
         notify.flags |= Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
         NotificationManager notifyManage = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notifyManage.notify(PLAY_NOTIFICATION,notify);*/
+        notifyManage.notify(PLAY_NOTIFICATION,notify);
 
         //It before hand start the notification with Ongoing as true; Also it does not
         // refreshes the notification when paused.
-        startForeground(PLAY_NOTIFICATION, builder.build());
+        //startForeground(PLAY_NOTIFICATION, builder.build());
     }
 
     private void showPausedNotification()
@@ -284,7 +284,7 @@ public class BackgroundMediaService extends MediaBrowserService implements
         notify.priority = Notification.PRIORITY_HIGH;
         NotificationManager notifyManage = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         //Updates the notification without flashing it & keeping it removable.
-        stopForeground(false);
+        //stopForeground(false);
         notifyManage.notify(PAUSE_NOTIFICATION,notify);
     }
 

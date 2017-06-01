@@ -139,7 +139,7 @@ class MediaStyleHelper
                     .setShowActionsInCompactView(1) );
 
             // Try to make notification removable without rebuilding it.
-            builder.setOngoing(false);
+            //builder.setOngoing(false);
         }
 
         return builder;
