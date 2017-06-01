@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MusicApp-v6</string>
+    <string name="app_name">MusicApp</string>
     <string name="btBck"><![CDATA[|<]]></string>
     <string name="btFbck"><![CDATA[<<]]></string>
     <string name="btFF"><![CDATA[>>]]></string>
