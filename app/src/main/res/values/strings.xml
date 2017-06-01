@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MusicApp-v6</string>
+    <string name="btBck"><![CDATA[|<]]></string>
+    <string name="btFbck"><![CDATA[<<]]></string>
+    <string name="btFF"><![CDATA[>>]]></string>
+    <string name="btNxt"><![CDATA[>|]]></string>
+    <string name="btPly">||</string>
+    <string name="artDesc">Track Art For Song</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+</resources>

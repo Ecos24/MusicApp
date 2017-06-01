@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15sp" >
+
+    <ImageView
+        android:id="@+id/trackArt"
+        android:contentDescription="@string/artDesc"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:layout_alignBottom="@+id/songArtist" />
+
+    <TextView
+        android:id="@+id/songTitle"
+        android:layout_toEndOf="@+id/trackArt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textSize="20sp"
+        android:paddingTop="2sp"
+        android:paddingBottom="2sp"
+        android:paddingStart="17sp"
+        android:paddingEnd="1sp" />
+
+    <TextView
+        android:id="@+id/songArtist"
+        android:layout_below="@+id/songTitle"
+        android:layout_toEndOf="@+id/trackArt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="2sp"
+        android:paddingBottom="2sp"
+        android:paddingStart="17sp"
+        android:paddingEnd="1sp"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/songDuration"
+        android:layout_below="@+id/songTitle"
+        android:layout_alignEnd="@+id/songTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2sp" />
+
+</RelativeLayout>
