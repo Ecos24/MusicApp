@@ -29,6 +29,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -300,8 +301,11 @@ public class MainActivity extends AppCompatActivity
 
         ContentResolver resolver = getContentResolver();
         String selection = MediaStore.Audio.Media.IS_MUSIC + "!= 0";
+        String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension("mp3");
+        String[] selectionArgsMp3 = new String[]{ mimeType };
         //String sortOrder = MediaStore.Audio.Media.TITLE + " ASC";
-        Cursor cursor = resolver.query(musicUri, null, selection, null, null);
+        //String[] projection = null;
+        Cursor cursor = resolver.query(musicUri, null/*projection*/, selection, null/*selectionArgsMp3*/, null/*sortOrder*/);
 
         //Declarations to be used.
         int titleCol;

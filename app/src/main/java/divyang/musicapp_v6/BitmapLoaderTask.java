@@ -40,8 +40,8 @@ class BitmapLoaderTask extends AsyncTask<String,Integer,Bitmap>
                 return musicArt;
             }
         }
-        catch (IllegalArgumentException e)
-        {
+        catch (/*IllegalArgumentException | */RuntimeException e) //metaDataArt.setDataSource(params[0]); was causing
+        {                                                         //RuntimeException in MIUI.
             Log.i("Check","Exception Thrown");
         }
         finally
